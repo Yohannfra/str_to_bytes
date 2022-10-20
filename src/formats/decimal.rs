@@ -40,7 +40,7 @@ mod tests {
         assert!(is_decimal("18130184813"));
         assert!(is_decimal("189120931130184813"));
 
-        // simple binary
+        // simple decimal
         assert_eq!(parse_decimal("10"), [10]);
         assert_eq!(parse_decimal("6"), [6]);
         assert_eq!(parse_decimal("1"), [1]);
@@ -48,6 +48,9 @@ mod tests {
 
         // multi bytes
         assert_eq!(parse_decimal("1024"), [0b100, 0]);
-        assert_eq!(parse_decimal("123456789"), [0b111, 0b01011011, 0b11001101, 0b00010101]);
+        assert_eq!(
+            parse_decimal("123456789"),
+            [0b111, 0b01011011, 0b11001101, 0b00010101]
+        );
     }
 }

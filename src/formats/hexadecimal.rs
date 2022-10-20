@@ -50,7 +50,7 @@ mod tests {
         assert!(is_hexadecimal("0xf"));
         assert!(is_hexadecimal("0xff01938422749abdef13131fee3"));
 
-        // simple binary
+        // simple hexadecimal
         assert_eq!(parse_hexadecimal("0x10"), [0x10]);
         assert_eq!(parse_hexadecimal("0x6"), [0x6]);
         assert_eq!(parse_hexadecimal("0xff"), [0xff]);
