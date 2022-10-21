@@ -1,11 +1,31 @@
 use regex::Regex;
 
+/// Check if a string contains the ASCII() marker.
+///
+/// Examples:
+/// ```rust
+/// assert!(is_str_ascii("ASCII(Hello)"));
+/// assert!(is_str_ascii("ASCII(world)"));
+/// assert!(is_str_ascii("Hi mom") == false);
+/// ```
 pub fn is_str_ascii(s: &str) -> bool {
     let re = Regex::new(r"ASCII\(.+\)").unwrap();
 
     return re.is_match(s);
 }
 
+/// Parse a string containing a ASCII() marker into a Vec<u8>.
+///
+/// Always use if is_str_ascii() returns true on that string.
+///
+/// Examples:
+/// ```rust
+/// let ascii_str: &str = "ASCII(hello world)";
+/// if is_str_ascii(ascii_str) {
+///     let bytes = parse_str_ascii(ascii_str);
+///     println!("{:?}", bytes);
+/// }
+/// ```
 pub fn parse_str_ascii(s: &str) -> Vec<u8> {
     let mut s: String = s[6..].to_owned(); // remove ASCII(
     s.pop(); // remove )

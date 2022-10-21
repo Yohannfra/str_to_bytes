@@ -1,11 +1,33 @@
 use regex::Regex;
 
+/// Check if a string match a hexadecimal number representation.
+///
+/// Accepts 0x and 0X
+///
+/// Examples:
+/// ```rust
+/// assert!(is_hexadecimal("0xAB"));
+/// assert!(is_hexadecimal("0Xab"));
+/// assert!(is_hexadecimal("13") == false);
+/// ```
 pub fn is_hexadecimal(s: &str) -> bool {
     let re = Regex::new(r"^(0x|0X)[a-fA-F0-9]+$").unwrap();
 
     return re.is_match(s);
 }
 
+/// Parse a string representing a hexadecimal number into a Vec<u8>.
+///
+/// Always use if is_hexadecimal() returns true on that string.
+///
+/// Examples:
+/// ```rust
+/// let hex_str: &str = "0xffabc";
+/// if is_hexadecimal(hex_str) {
+///     let bytes = parse_hexadecimal(hex_str);
+///     println!("{:?}", bytes);
+/// }
+/// ```
 pub fn parse_hexadecimal(n: &str) -> Vec<u8> {
     let mut bytes: Vec<u8> = Vec::new();
     let mut bytes_str: Vec<String> = Vec::new();

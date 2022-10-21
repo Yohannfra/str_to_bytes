@@ -7,6 +7,15 @@ use formats::decimal::{is_decimal, parse_decimal};
 use formats::hexadecimal::{is_hexadecimal, parse_hexadecimal};
 use formats::str::{is_str_ascii, parse_str_ascii};
 
+/// Parse a string that contains one or may of [hexadecimal, decimal, binary, ASCII()] into a Vec<u8>.
+///
+/// Examples:
+/// ```rust
+///     let my_str: &str = "12 0b11 0xff43 ASCII(HELLO)";
+///     let bytes = parse_binary(my_str);
+///     println!("{:?}", bytes);
+/// }
+/// ```
 pub fn str_to_bytes(payload: &str) -> Result<Vec<u8>, Box<dyn Error>> {
     let mut bytes: Vec<u8> = Vec::new();
 
@@ -86,6 +95,9 @@ mod tests {
         );
 
         // everything
-        assert_eq!(str_to_bytes("10 0b10 ASCII(a) 0xff").unwrap(), [10, 0b10, 97, 255]);
+        assert_eq!(
+            str_to_bytes("10 0b10 ASCII(a) 0xff").unwrap(),
+            [10, 0b10, 97, 255]
+        );
     }
 }

@@ -1,11 +1,31 @@
 use regex::Regex;
 
+/// Check if a string match a decimal number representation.
+///
+/// Examples:
+/// ```rust
+/// assert!(is_decimal("11"));
+/// assert!(is_decimal("1424"));
+/// assert!(is_decimal("0x33") == false);
+/// ```
 pub fn is_decimal(s: &str) -> bool {
     let re = Regex::new(r"[a-fA-F0-9]+$").unwrap();
 
     return re.is_match(s);
 }
 
+/// Parse a string representing a decimal number into a Vec<u8>.
+///
+/// Always use if is_decimal() returns true on that string.
+///
+/// Examples:
+/// ```rust
+/// let dec_str: &str = "4124";
+/// if is_decimal(dec_str) {
+///     let bytes = parse_decimal(dec_str);
+///     println!("{:?}", bytes);
+/// }
+/// ```
 pub fn parse_decimal(n: &str) -> Vec<u8> {
     let val = u64::from_str_radix(n, 10).expect("Not a decimal number");
 

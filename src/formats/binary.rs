@@ -1,11 +1,33 @@
 use regex::Regex;
 
+/// Check if a string match a binary number representation.
+///
+/// Accepts 0b and 0B
+///
+/// Examples:
+/// ```rust
+/// assert!(is_binary("0b11"));
+/// assert!(is_binary("0B01"));
+/// assert!(is_binary("0b123") == false);
+/// ```
 pub fn is_binary(s: &str) -> bool {
     let re = Regex::new(r"^(0b|0B)[10]+$").unwrap();
 
     return re.is_match(s);
 }
 
+/// Parse a string representing a binary number into a Vec<u8>.
+///
+/// Always use if is_binary() returns true on that string.
+///
+/// Examples:
+/// ```rust
+/// let bin_str: &str = "0b1010001";
+/// if is_binary(bin_str) {
+///     let bytes = parse_binary(bin_str);
+///     println!("{:?}", bytes);
+/// }
+/// ```
 pub fn parse_binary(n: &str) -> Vec<u8> {
     let mut bytes: Vec<u8> = Vec::new();
     let mut bytes_str: Vec<String> = Vec::new();
