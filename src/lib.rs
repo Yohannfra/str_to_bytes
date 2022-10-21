@@ -1,11 +1,11 @@
 use std::error::Error;
 
-mod formats;
+pub mod formats;
 
-use formats::binary::{is_binary, parse_binary};
-use formats::decimal::{is_decimal, parse_decimal};
-use formats::hexadecimal::{is_hexadecimal, parse_hexadecimal};
-use formats::str::{is_str_ascii, parse_str_ascii};
+pub use formats::binary::{is_binary, parse_binary};
+pub use formats::decimal::{is_decimal, parse_decimal};
+pub use formats::hexadecimal::{is_hexadecimal, parse_hexadecimal};
+pub use formats::str::{is_str_ascii, parse_str_ascii};
 
 /// Parse a string that contains one or may of [hexadecimal, decimal, binary, ASCII()] into a Vec<u8>.
 ///
