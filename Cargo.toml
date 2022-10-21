@@ -2,6 +2,10 @@
 name = "str_to_bytes"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "parse a string representations of numbers or ascii text and return a Vec<u8>"
+readme = "README.md"
+repository = "https://github.com/Yohannfra/str_to_bytes"
 
 [dependencies]
 regex = "1"
