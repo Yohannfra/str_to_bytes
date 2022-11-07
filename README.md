@@ -2,7 +2,7 @@
 
 A library to parse a string representations of numbers or ascii text and return a ```Vec<u8>```.
 
-This library was originally created to be used in [BlueRepl-rs](https://github.com/Yohannfra/BlueRepl-rs)
+This library was originally created to be used in [bluerepl](https://github.com/Yohannfra/bluerepl)
 
 ## Examples
 
