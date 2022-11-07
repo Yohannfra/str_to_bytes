@@ -1,6 +1,6 @@
 [package]
 name = "str_to_bytes"
-version = "0.1.0"
+version = "0.2.1"
 edition = "2021"
 license = "MIT"
 description = "parse a string representations of numbers or ascii text and return a Vec<u8>"
