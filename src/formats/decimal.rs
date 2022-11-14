@@ -4,14 +4,16 @@ use regex::Regex;
 ///
 /// Examples:
 /// ```rust
+/// use str_to_bytes::is_decimal;
+///
 /// assert!(is_decimal("11"));
 /// assert!(is_decimal("1424"));
 /// assert!(is_decimal("0x33") == false);
 /// ```
 pub fn is_decimal(s: &str) -> bool {
-    let re = Regex::new(r"[a-fA-F0-9]+$").unwrap();
+    let re = Regex::new(r"^[0-9]+$").unwrap();
 
-    return re.is_match(s);
+    re.is_match(s)
 }
 
 /// Parse a string representing a decimal number into a Vec<u8>.
@@ -20,14 +22,16 @@ pub fn is_decimal(s: &str) -> bool {
 ///
 /// Examples:
 /// ```rust
+/// use str_to_bytes::{is_decimal, parse_decimal};
+///
 /// let dec_str: &str = "4124";
-/// if is_decimal(dec_str) {
+/// if str_to_bytes::is_decimal(dec_str) {
 ///     let bytes = parse_decimal(dec_str);
 ///     println!("{:?}", bytes);
 /// }
 /// ```
 pub fn parse_decimal(n: &str) -> Vec<u8> {
-    let val = u64::from_str_radix(n, 10).expect("Not a decimal number");
+    let val = n.parse::<u64>().expect("Not a decimal number");
 
     let mut bytes: Vec<u8> = Vec::new();
     bytes.extend_from_slice(&val.to_be_bytes());

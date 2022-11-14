@@ -6,6 +6,8 @@ use regex::Regex;
 ///
 /// Examples:
 /// ```rust
+/// use str_to_bytes::is_hexadecimal;
+///
 /// assert!(is_hexadecimal("0xAB"));
 /// assert!(is_hexadecimal("0Xab"));
 /// assert!(is_hexadecimal("13") == false);
@@ -13,7 +15,7 @@ use regex::Regex;
 pub fn is_hexadecimal(s: &str) -> bool {
     let re = Regex::new(r"^(0x|0X)[a-fA-F0-9]+$").unwrap();
 
-    return re.is_match(s);
+    re.is_match(s)
 }
 
 /// Parse a string representing a hexadecimal number into a Vec<u8>.
@@ -22,6 +24,8 @@ pub fn is_hexadecimal(s: &str) -> bool {
 ///
 /// Examples:
 /// ```rust
+/// use str_to_bytes::{is_hexadecimal, parse_hexadecimal};
+///
 /// let hex_str: &str = "0xffabc";
 /// if is_hexadecimal(hex_str) {
 ///     let bytes = parse_hexadecimal(hex_str);
@@ -34,7 +38,7 @@ pub fn parse_hexadecimal(n: &str) -> Vec<u8> {
 
     let mut s: String = n[2..].to_owned(); // remove 0x
 
-    while s.is_empty() == false {
+    while !s.is_empty() {
         // regroup in groups of 2 digits
         let tmp = s[0..std::cmp::min(2, s.len())].to_owned();
         s = s[std::cmp::min(2, s.len())..].to_owned();
@@ -43,7 +47,7 @@ pub fn parse_hexadecimal(n: &str) -> Vec<u8> {
 
     for bs in &bytes_str {
         // parse all groups of 2 digits into u8
-        bytes.push(u8::from_str_radix(&bs, 16).expect("Not a hexadecimal number"));
+        bytes.push(u8::from_str_radix(bs, 16).expect("Not a hexadecimal number"));
     }
 
     bytes

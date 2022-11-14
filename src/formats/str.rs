@@ -4,6 +4,8 @@ use regex::Regex;
 ///
 /// Examples:
 /// ```rust
+/// use str_to_bytes::is_str_ascii;
+///
 /// assert!(is_str_ascii("ASCII(Hello)"));
 /// assert!(is_str_ascii("ASCII(world)"));
 /// assert!(is_str_ascii("Hi mom") == false);
@@ -11,7 +13,7 @@ use regex::Regex;
 pub fn is_str_ascii(s: &str) -> bool {
     let re = Regex::new(r"ASCII\(.+\)").unwrap();
 
-    return re.is_match(s);
+    re.is_match(s)
 }
 
 /// Parse a string containing a ASCII() marker into a Vec<u8>.
@@ -20,6 +22,8 @@ pub fn is_str_ascii(s: &str) -> bool {
 ///
 /// Examples:
 /// ```rust
+/// use str_to_bytes::{is_str_ascii, parse_str_ascii};
+///
 /// let ascii_str: &str = "ASCII(hello world)";
 /// if is_str_ascii(ascii_str) {
 ///     let bytes = parse_str_ascii(ascii_str);

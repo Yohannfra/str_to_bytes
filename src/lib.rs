@@ -11,10 +11,11 @@ pub use formats::str::{is_str_ascii, parse_str_ascii};
 ///
 /// Examples:
 /// ```rust
+///     use str_to_bytes::str_to_bytes;
+///
 ///     let my_str: &str = "12 0b11 0xff43 ASCII(HELLO)";
-///     let bytes = parse_binary(my_str);
+///     let bytes = str_to_bytes(my_str);
 ///     println!("{:?}", bytes);
-/// }
 /// ```
 pub fn str_to_bytes(payload: &str) -> Result<Vec<u8>, Box<dyn Error>> {
     let mut bytes: Vec<u8> = Vec::new();
